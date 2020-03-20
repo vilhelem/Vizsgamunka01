@@ -1,8 +1,9 @@
 <?php 
 
+//helper funkciók
 function redirect ($location){
 
-    header("Location: $location");0
+    header("Location: $location");
 }
 
 
@@ -31,12 +32,29 @@ function escape_string ($string){
 
 function fetch_array($result){
 
-    return mysqli_fetch_array($send_query)
+    return mysqli_fetch_array($result);
+}
+
+//get termékek
+
+function get_products() { 
+
+
+$query = query ("SELECT * FROM termekek");
+
+confirm($query);
+
+while ($row = fetch_array($query)) {
+
+echo $row['termek_ar'];
+
 }
 
 
 
 
+
+}
 
 
 
