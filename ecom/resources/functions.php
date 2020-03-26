@@ -50,15 +50,15 @@ $termek = <<<DELIMETER
 
 <div class="col-sm-4 col-lg-4 col-md-4">
 <div class="thumbnail">
-    <img src="http://placehold.it/320x150" alt="">
+  <a href="item.php?id={$row['termek_id']}">  <img src="{$row['termek_kep']}" alt="">
     <div class="caption">
-        <h4 class="pull-right">{$row['termek_ar']}</h4>
-        <h4><a href="#">Fifth Product</a>
+        <h4 class="pull-right">{$row['termek_ar']}Ft</h4>
+        <h4><a href="#">{$row['termek_nev']}</a>
         </h4>
         <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
     
-    <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
+    <a class="btn btn-primary" target="_blank" href="item.php?id={row['termek_id']}">KOSÁRBA</a>
 
 
 </div>
