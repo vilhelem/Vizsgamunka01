@@ -35,6 +35,8 @@ function fetch_array($result){
     return mysqli_fetch_array($result);
 }
 
+/*************************FRONT END FUNCTIONS */
+
 //get termékek
 
 function get_products() { 
@@ -53,7 +55,7 @@ $termek = <<<DELIMETER
   <a href="item.php?id={$row['termek_id']}">  <img src="{$row['termek_kep']}" alt="">
     <div class="caption">
         <h4 class="pull-right">{$row['termek_ar']}Ft</h4>
-        <h4><a href="#">{$row['termek_nev']}</a>
+        <h4><a href="item.php?id={$row['termek_id']}">{$row['termek_nev']}</a>
         </h4>
         <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
@@ -67,7 +69,7 @@ DELIMETER;
 
 echo $termek;
 
-}
+        }
 
 
 
@@ -76,8 +78,32 @@ echo $termek;
 }
 
 
+function get_kategoriak() {
 
 
+
+    $query = query("SELECT * FROM kategoriak");
+    confirm($query);
+    
+
+
+    while($row= fetch_array($query)){
+
+$kategoria_links = <<<DELIMETER
+
+<a href='category.php?id={$row['kat_id']}' class='list-group-item'>{$row['kat_nev']}</a>
+
+DELIMETER;
+
+echo $kategoria_links;
+    }
+ 
+
+}
+
+
+
+/*************************BACK END FUNCTIONS */
 
 
 ?>
