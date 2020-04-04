@@ -77,29 +77,116 @@ echo $termek;
 
 }
 
-
-function get_kategoriak() {
-
+function get_kategoriak(){
 
 
     $query = query("SELECT * FROM kategoriak");
     confirm($query);
     
+    while($row = fetch_array($query)) {
+    
+    
+    $categories_links = <<<DELIMETER
+    
+    <a href='category.php?id={$row['kat_id']}' class='list-group-item'>{$row['kat_nev']}</a>
+    
+    
+    DELIMETER;
+    
+    echo $categories_links;
+    
+         }
+    
+    
+    
+    }
+    
+    
+    
+    
+
+function get_products_in_cat_page() { 
 
 
-    while($row= fetch_array($query)){
-
-$kategoria_links = <<<DELIMETER
-
-<a href='category.php?id={$row['kat_id']}' class='list-group-item'>{$row['kat_nev']}</a>
+    $query = query ("SELECT * FROM termekek WHERE termek_kategoria_id = " . escape_string($_GET['id']) . " ");
+    
+    confirm($query);
+    
+    while ($row = fetch_array($query)) {
+    
+    $termek = <<<DELIMETER
+    
+    <div class="col-md-3 col-sm-6 hero-feature">
+    <div class="thumbnail">
+        <img src="{$row['termek_kep']}" alt="">
+        <div class="caption">
+            <h3>{$row['termek_nev']}</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>
+                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
+            </p>
+        </div>
+    </div>
+</div>
 
 DELIMETER;
-
-echo $kategoria_links;
+    
+    echo $termek;
+    
+            }
+    
+    
+    
+    
+    
     }
- 
+    
 
+    
+    function get_products_in_shop_page() { 
+
+
+        $query = query ("SELECT * FROM termekek");
+        
+        confirm($query);
+        
+        while ($row = fetch_array($query)) {
+        
+        $termek = <<<DELIMETER
+        
+        <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img src="{$row['termek_kep']}" alt="">
+            <div class="caption">
+                <h3>{$row['termek_nev']}</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>
+                    <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    DELIMETER;
+        
+        echo $termek;
+        
+                }
+        
+        
+        
+        
+        
+        }
+        
+        
+function send_message(){
+
+    if(isset($_POST['submit'])){
+        echo "it works ";
+    }
 }
+
 
 
 
