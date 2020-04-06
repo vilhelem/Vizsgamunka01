@@ -15,6 +15,36 @@ function query($sql){
 }
 
 
+function set_message($msg){
+
+    if(!empty($msg)) {
+    
+    $_SESSION['message'] = $msg;
+    
+    } else {
+    
+    $msg = "";
+    
+    
+        }
+    
+    
+    }
+    
+    
+    function display_message() {
+    
+        if(isset($_SESSION['message'])) {
+    
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+    
+        }
+    
+    
+    
+    }
+    
 
 
 function confirm($result){
@@ -183,7 +213,26 @@ DELIMETER;
 function send_message(){
 
     if(isset($_POST['submit'])){
-        echo "it works ";
+   
+        $to           = "patrikvilhelem@gmail.com";
+        $from_name    = $_POST['name'];
+        $subject      = $_POST['subject'];
+        $email        = $_POST['email'];
+        $message      = $_POST['message'];
+
+
+        $headers = "From: {$from_name} {$email}";
+
+       $result = mail($to, $subject, $message, $headers);
+
+       if (!$result) {
+           set_message("Sorry we codnt send your mesage");
+           redirect("contact.php"); //lefrissíti az oldalt
+    
+       }
+       else {
+           set_message("Your message has been sent");
+       }
     }
 }
 
