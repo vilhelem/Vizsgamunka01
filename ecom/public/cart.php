@@ -30,9 +30,6 @@ if(isset($_GET['add'])) {
 
 
 
-
-
-
     }
 
 
@@ -45,6 +42,68 @@ if(isset($_GET['add'])) {
 
 
 
+
+
+
+
+if(isset($_GET['remove'])) {
+
+$_SESSION['product_' . $_GET['remove']]--; //lehet rossz lesz
+
+if ($_SESSION['product_' . $_GET['remove']] < 1) {
+
+redirect("checkout.php");
+
+} else {
+
+    redirect("checkout.php");
+
+}
+
+
+}
+
+if(isset($_GET['delete'])) {
+
+    $_SESSION['product_' . $_GET['delete']] ='0';
+
+    redirect("checkout.php");
+
+}
+
+
+
+
+ function cart() {
+
+  $query = query("SELECT * FROM termekek");
+  confirm($query);
+
+  while($row = fetch_array($query)) {
+
+
+ $termek = <<<DELIMETER
+            <tr>
+                <td>{$row['termek_nev']}</td>
+                <td>$23</td>
+                <td>3</td>
+                <td>2</td>
+                <td><a href="cart.php?remove=1">Remove</a></td>
+                <td><a href="cart.php?delete=1">Delete</a></td>
+            </tr>
+
+ DELIMETER;
+
+ echo $termek;
+
+  }
+
+
+
+
+
+
+ }
 
 
 ?>
