@@ -76,6 +76,16 @@ if(isset($_GET['delete'])) {
 
  function cart() {
 
+
+  foreach ($_SESSION as $name => $value){
+
+   termek_1 =  
+
+
+
+}
+
+
   $query = query("SELECT * FROM termekek");
   confirm($query);
 
@@ -85,13 +95,13 @@ if(isset($_GET['delete'])) {
  $termek = <<<DELIMETER
             <tr>
                 <td>{$row['termek_nev']}</td>
-                <td>$23</td>
-                <td>3</td>
+                <td>{$row['termek_ar']}</td>
+                <td>{$row['termek_darabszam']}</td>
                 <td>2</td>
-                <td><a href="cart.php?remove=1">Remove</a></td>
-                <td><a href="cart.php?delete=1">Delete</a></td>
-            </tr>
-
+               
+                <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../resources/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>            
+                <a class='btn btn-danger' href="../resources/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
+  </tr>
  DELIMETER;
 
  echo $termek;
