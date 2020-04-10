@@ -90,7 +90,7 @@ $termek = <<<DELIMETER
         <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
     
-    <a class="btn btn-primary" target="_blank" href="item.php?id={row['termek_id']}">KOSÁRBA</a>
+    <a class="btn btn-primary" target="_blank" href="cart.php?add={$row['termek_id']}">KOSÁRBA</a>
 
 
 </div>
