@@ -79,37 +79,44 @@ if(isset($_GET['delete'])) {
 
   foreach ($_SESSION as $name => $value){
 
-   termek_1 =  
+
+    if(substr($name, 0, 6) == "termek_") {
+
+      $query = query("SELECT * FROM termekek");
+      confirm($query);
+    
+      while($row = fetch_array($query)) {
+    
+    
+     $termek = <<<DELIMETER
+                <tr>
+                    <td>{$row['termek_nev']}</td>
+                    <td>{$row['termek_ar']}</td>
+                    <td>{$row['termek_darabszam']}</td>
+                    <td>2</td>
+                   
+                    <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../resources/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>            
+                    <a class='btn btn-danger' href="../resources/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
+      </tr>
+     DELIMETER;
+    
+     echo $termek;
+    
+      }
+    
+    
+    
+    
 
 
 
-}
 
-
-  $query = query("SELECT * FROM termekek");
-  confirm($query);
-
-  while($row = fetch_array($query)) {
-
-
- $termek = <<<DELIMETER
-            <tr>
-                <td>{$row['termek_nev']}</td>
-                <td>{$row['termek_ar']}</td>
-                <td>{$row['termek_darabszam']}</td>
-                <td>2</td>
-               
-                <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../resources/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>            
-                <a class='btn btn-danger' href="../resources/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
-  </tr>
- DELIMETER;
-
- echo $termek;
-
-  }
+         }
+    
 
 
 
+    }
 
 
 
