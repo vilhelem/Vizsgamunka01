@@ -4,7 +4,7 @@
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
 
 <?php 
-if (isset($_SESSION['termek_1'])){
+if (isset($_SESSION['termek_1'])) {
     echo $_SESSION['termek_1'];
 }
 

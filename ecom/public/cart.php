@@ -12,17 +12,17 @@ if(isset($_GET['add'])) {
     while($row = fetch_array($query)) {
 
 
-      if($row['termek_darabszam'] != $_SESSION['product_' . $_GET['add']]) {
+      if($row['termek_darabszam'] != $_SESSION['termek_' . $_GET['add']]) {
 
-        $_SESSION['product_' . $_GET['add']]+=1;
-        redirect("../public/checkout.php");
+        $_SESSION['termek_' . $_GET['add']]+=1;
+        redirect("checkout.php");
 
 
       } else {
 
 
-        set_message("We only have  " . $row['termek_darabszam'] . " " . "{$row['termek_nev']}" . " available");
-        redirect("../public/checkout.php");
+        set_message("Csak  " . $row['termek_darabszam'] . " " . "{$row['termek_nev']}" . " van raktáron");
+        redirect("checkout.php");
 
 
 
@@ -48,15 +48,15 @@ if(isset($_GET['add'])) {
 
 if(isset($_GET['remove'])) {
 
-$_SESSION['product_' . $_GET['remove']]--; //lehet rossz lesz
+$_SESSION['termek_' . $_GET['remove']]--; //lehet rossz lesz
 
-if ($_SESSION['product_' . $_GET['remove']] < 1) {
+if ($_SESSION['termek_' . $_GET['remove']] < 1) {
 
 redirect("checkout.php");
 
 } else {
 
-    redirect("checkout.php");
+  redirect("checkout.php");
 
 }
 
@@ -65,7 +65,7 @@ redirect("checkout.php");
 
 if(isset($_GET['delete'])) {
 
-    $_SESSION['product_' . $_GET['delete']] ='0';
+    $_SESSION['termek_' . $_GET['delete']] ='0';
 
     redirect("checkout.php");
 
@@ -76,50 +76,41 @@ if(isset($_GET['delete'])) {
 
  function cart() {
 
-
-  foreach ($_SESSION as $name => $value){
-
-
-    if(substr($name, 0, 6) == "termek_") {
-
-      $query = query("SELECT * FROM termekek");
-      confirm($query);
-    
-      while($row = fetch_array($query)) {
-    
-    
-     $termek = <<<DELIMETER
-                <tr>
-                    <td>{$row['termek_nev']}</td>
-                    <td>{$row['termek_ar']}</td>
-                    <td>{$row['termek_darabszam']}</td>
-                    <td>2</td>
-                   
-                    <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../resources/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>            
-                    <a class='btn btn-danger' href="../resources/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
-      </tr>
-     DELIMETER;
-    
-     echo $termek;
-    
-      }
-    
-    
-    
-    
+foreach ($_SESSION as $name => $value) {
 
 
 
+  if (substr($name, 0, 6)) == "termek_" {
 
-         }
-    
-
-
-
+    $query = query("SELECT * FROM termekek");
+    confirm($query);
+  
+    while($row = fetch_array($query)) {
+  
+  
+   $termek = <<<DELIMETER
+              <tr>
+                  <td>{$row['termek_nev']}</td>
+                  <td>{$row['termek_ar']}</td>
+                  <td>{$row['termek_darabszam']}</td>
+                  <td>2</td>
+                  <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../resources/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>
+                  <a class='btn btn-danger' href="../resources/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
+                    </tr>
+   DELIMETER;
+  
+   echo $termek;
+  
     }
+  
+  }
+      
 
+      }
 
+  }
 
+  
  }
 
 
