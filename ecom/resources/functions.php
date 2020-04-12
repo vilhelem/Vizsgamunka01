@@ -79,7 +79,6 @@ confirm($query);
 while ($row = fetch_array($query)) {
 
 $termek = <<<DELIMETER
-
 <div class="col-sm-4 col-lg-4 col-md-4">
 <div class="thumbnail">
   <a href="item.php?id={$row['termek_id']}">  <img src="{$row['termek_kep']}" alt="">
@@ -91,8 +90,6 @@ $termek = <<<DELIMETER
     </div>
     
     <a class="btn btn-primary" target="_blank" href="cart.php?add={$row['termek_id']}">KOSÁRBA</a>
-
-
 </div>
 </div>
 DELIMETER;
@@ -138,7 +135,7 @@ function get_kategoriak(){
 function get_products_in_cat_page() { 
 
 
-    $query = query ("SELECT * FROM termekek WHERE termek_kategoria_id = " . escape_string($_GET['id']) . " ");
+    $query = query("SELECT * FROM termekek WHERE termek_kategoria_id = " . escape_string($_GET['id']) . " ");
     
     confirm($query);
     
@@ -158,7 +155,6 @@ function get_products_in_cat_page() {
         </div>
     </div>
 </div>
-
 DELIMETER;
     
     echo $termek;
@@ -243,4 +239,3 @@ function send_message(){
 
 
 ?>
-
