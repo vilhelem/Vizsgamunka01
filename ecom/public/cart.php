@@ -118,7 +118,7 @@ $id = substr($name, 7 , $length);
                    <input type="hidden" name="item_name_{$item_name}" value="{$row['termek_nev']}">
                    <input type="hidden" name="item_number_{$item_number}" value="{$row['termek_id']}">
                    <input type="hidden" name="amount_{$amount}" value="{$row['termek_ar']}">
-                   <input type="hidden" name="quantity_{$quantity}" value="{$row['termek_darabszam']}">
+                   <input type="hidden" name="quantity_{$quantity}" value="{$value}">
 
 DELIMETER;
  
@@ -159,7 +159,20 @@ $_SESSION['item_quantity'] = $item_quantity; //termekek db
 
       }
 
-  
+  function show_paypal(){
+
+if(isset($_SESSION['item_quantity'])){
 
 
+$paypal_button = <<<DELIMETER
+
+<input type="image" name="upload"
+    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+    alt="PayPal - The safer, easier way to pay online">
+
+DELIMETER;
+return $paypal_button;
+  }
+
+  }
 ?>
