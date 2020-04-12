@@ -5,7 +5,8 @@
 
 <?php 
 if (isset($_SESSION['termek_1'])) {
-    echo $_SESSION['termek_1'];
+   
+    echo $_SESSION['item_total'];
 }
 
 ?>
@@ -61,7 +62,13 @@ if (isset($_SESSION['termek_1'])) {
 
 <tr class="order-total">
 <th>Order Total</th>
-<td><strong><span class="amount">$3444</span></strong> </td>
+<td><strong><span class="amount">
+<?php echo isset ($_SESSION['item_total'])  ? $_SESSION['item_total'] : $_SESSION['item_total'] ="";
+?>
+
+
+
+Ft </span></strong> </td>
 </tr>
 
 

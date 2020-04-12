@@ -76,6 +76,8 @@ if(isset($_GET['delete'])) {
 
  function cart() {
 
+  $total = 0;
+
 foreach ($_SESSION as $name => $value) {
 
   if($value > 0) {
@@ -91,23 +93,25 @@ $id = substr($name, 7 , $length);
  
    while($row = fetch_array($query)) {
  
+    $sub = $row['termek_ar']*$value; //termek darab*termek ar
  
   $termek = <<<DELIMETER
              <tr>
                  <td>{$row['termek_nev']}</td>
-                 <td>{$row['termek_ar']}</td>
+                 <td>{$row['termek_ar']} Ft</td>
                  <td>{$value}</td>
-                 <td>2</td>
+                 <td>{$sub} Ft</td>
                  <td><a class='btn btn-warning' href="../public/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../public/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>
                  <a class='btn btn-danger' href="../public/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
                    </tr>
 DELIMETER;
  
   echo $termek;
- 
-                    }
 
 
+}
+
+$_SESSION['item_total'] = $total += $sub;
 
 
 
