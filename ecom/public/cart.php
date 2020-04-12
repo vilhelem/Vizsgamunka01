@@ -84,6 +84,10 @@ if(isset($_GET['delete'])) {
   $item_quantity = 0;
   $total = 0;
 
+  $item_name = 1;
+  $item_number =1;
+  $amount =1;
+  $quantity =1;
 foreach ($_SESSION as $name => $value) {
 
   if($value > 0) {
@@ -110,10 +114,21 @@ $id = substr($name, 7 , $length);
                  <td><a class='btn btn-warning' href="../public/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../public/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>
                  <a class='btn btn-danger' href="../public/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
                    </tr>
+
+                   <input type="hidden" name="item_name_{$item_name}" value="hat">
+                   <input type="hidden" name="item_number_{$item_number}" value="123">
+                   <input type="hidden" name="amount_{$amount}" value="15.00">
+                   <input type="hidden" name="quantity_{$quantity}" value="15.00">
+
 DELIMETER;
  
   echo $termek;
 
+  $item_name++;
+  $item_number ++;
+  $amount ++;
+  $quantity++;
+  
 
 }
 
