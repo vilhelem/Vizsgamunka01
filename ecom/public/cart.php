@@ -52,6 +52,8 @@ $_SESSION['termek_' . $_GET['remove']]--; //lehet rossz lesz
 
 if ($_SESSION['termek_' . $_GET['remove']] < 1) {
 
+  unset($_SESSION['item_total']);
+  unset($_SESSION['item_quantity']);  
 redirect("checkout.php");
 
 } else {
@@ -66,8 +68,12 @@ redirect("checkout.php");
 if(isset($_GET['delete'])) {
 
     $_SESSION['termek_' . $_GET['delete']] ='0';
+    unset($_SESSION['item_total']);
+    unset($_SESSION['item_quantity']);
+
 
     redirect("checkout.php");
+
 
 }
 
@@ -75,7 +81,7 @@ if(isset($_GET['delete'])) {
 
 
  function cart() {
-
+  $item_quantity = 0;
   $total = 0;
 
 foreach ($_SESSION as $name => $value) {
@@ -94,7 +100,7 @@ $id = substr($name, 7 , $length);
    while($row = fetch_array($query)) {
  
     $sub = $row['termek_ar']*$value; //termek darab*termek ar
- 
+    $item_quantity +=$value;
   $termek = <<<DELIMETER
              <tr>
                  <td>{$row['termek_nev']}</td>
@@ -111,7 +117,8 @@ DELIMETER;
 
 }
 
-$_SESSION['item_total'] = $total += $sub;
+$_SESSION['item_total'] = $total += $sub;    //teljes osszeg
+$_SESSION['item_quantity'] = $item_quantity; //termekek db
 
 
 
