@@ -115,10 +115,10 @@ $id = substr($name, 7 , $length);
                  <a class='btn btn-danger' href="../public/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
                    </tr>
 
-                   <input type="hidden" name="item_name_{$item_name}" value="hat">
-                   <input type="hidden" name="item_number_{$item_number}" value="123">
-                   <input type="hidden" name="amount_{$amount}" value="15.00">
-                   <input type="hidden" name="quantity_{$quantity}" value="15.00">
+                   <input type="hidden" name="item_name_{$item_name}" value="{$row['termek_nev']}">
+                   <input type="hidden" name="item_number_{$item_number}" value="{$row['termek_id']}">
+                   <input type="hidden" name="amount_{$amount}" value="{$row['termek_ar']}">
+                   <input type="hidden" name="quantity_{$quantity}" value="{$row['termek_darabszam']}">
 
 DELIMETER;
  
