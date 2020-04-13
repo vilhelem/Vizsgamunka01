@@ -89,7 +89,7 @@ $termek = <<<DELIMETER
         <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
     
-    <a class="btn btn-primary" target="_blank" href="cart.php?add={$row['termek_id']}">KOSÁRBA</a>
+    <a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['termek_id']}">KOSÁRBA</a>
 </div>
 </div>
 DELIMETER;
@@ -233,6 +233,31 @@ function send_message(){
 }
 
 
+function login_user (){
+
+    if (isset($_POST['submit'])){
+
+        $username = escape_string($_POST['username']);
+        $password = escape_string($_POST['password']);
+
+        $query = query("SELECT * FROM felhasznalok WHERE username = '{$username}' AND password = '{$password}' ");
+        confirm($query);
+
+if(mysqli_num_rows($query) == 0) {
+
+set_message("Your Password or Username are wrong");
+redirect("login.php");
+
+ }else {
+$_SESSION['username'] = $username;
+redirect("admin");
+ 
+ }
+
+
+    }
+
+}
 
 
 /*************************BACK END FUNCTIONS */

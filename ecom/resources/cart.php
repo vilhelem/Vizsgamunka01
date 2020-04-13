@@ -1,4 +1,4 @@
-<?php require_once("../resources/config.php"); ?>
+<?php require_once("config.php"); ?>
 
 <?php 
 
@@ -15,14 +15,14 @@ if(isset($_GET['add'])) {
       if($row['termek_darabszam'] != $_SESSION['termek_' . $_GET['add']]) {
 
         $_SESSION['termek_' . $_GET['add']]+=1;
-        redirect("checkout.php");
+        redirect("../public/checkout.php");
 
 
       } else {
 
 
         set_message("Csak  " . $row['termek_darabszam'] . " " . "{$row['termek_nev']}" . " van raktáron");
-        redirect("checkout.php");
+        redirect("../public/checkout.php");
 
 
 
@@ -54,11 +54,11 @@ if ($_SESSION['termek_' . $_GET['remove']] < 1) {
 
   unset($_SESSION['item_total']);
   unset($_SESSION['item_quantity']);  
-redirect("checkout.php");
+redirect("../public/checkout.php");
 
 } else {
 
-  redirect("checkout.php");
+  redirect("../public/checkout.php");
 
 }
 
@@ -72,7 +72,7 @@ if(isset($_GET['delete'])) {
     unset($_SESSION['item_quantity']);
 
 
-    redirect("checkout.php");
+    redirect("../public/checkout.php");
 
 
 }
@@ -111,8 +111,8 @@ $id = substr($name, 7 , $length);
                  <td>{$row['termek_ar']} Ft</td>
                  <td>{$value}</td>
                  <td>{$sub} Ft</td>
-                 <td><a class='btn btn-warning' href="../public/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../public/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>
-                 <a class='btn btn-danger' href="../public/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
+                 <td><a class='btn btn-warning' href="../resources/cart.php?remove={$row['termek_id']}"><span class='glyphicon glyphicon-minus'></span></a>   <a class='btn btn-success' href="../resources/cart.php?add={$row['termek_id']}"><span class='glyphicon glyphicon-plus'></span></a>
+                 <a class='btn btn-danger' href="../resources/cart.php?delete={$row['termek_id']}"><span class='glyphicon glyphicon-remove'></span></a></td>
                    </tr>
 
                    <input type="hidden" name="item_name_{$item_name}" value="{$row['termek_nev']}">

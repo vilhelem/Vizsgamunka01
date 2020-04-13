@@ -61,7 +61,7 @@ while($row = fetch_array($query)):
    
     <form action="">
         <div class="form-group">
-            <a href="cart.php?add=<?php echo $row['termek_id']; ?> " class="btn btn-primary" > Kosárba </a>
+            <a href="../resources/cart.php?add=<?php echo $row['termek_id']; ?> " class="btn btn-primary" > Kosárba </a>
         </div>
     </form>
 
