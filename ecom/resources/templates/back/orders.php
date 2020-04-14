@@ -7,6 +7,9 @@
    All Orders
 
 </h1>
+
+<h4 class="bg-danger"><?php display_message(); ?></h4>
+
 </div>
 
 <div class="row">
@@ -14,7 +17,7 @@
     <thead>
 
       <tr>
-           <th>S.N</th>
+           <th>ID</th>
            <th>Amount</th>
            <th>Transaction</th>
            <th>Qurrency</th>

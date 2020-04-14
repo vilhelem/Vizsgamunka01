@@ -290,6 +290,7 @@ $orders = <<<DELIMETER
 <td>{$row['rendeles_transaction']}</td>
 <td>{$row['rendeles_currency']}</td>
 <td>{$row['rendeles_status']}</td>
+<td><a class="btn btn-danger" href="../../resources/templates/back/delete_order.php?id={$row['rendeles_id']}"><spam class="glyphicon glyphicon-remove"></spam><a/></td>
 </tr>
 
 DELIMETER;
