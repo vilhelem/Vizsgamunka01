@@ -273,7 +273,33 @@ redirect("admin");
 
 /*************************BACK END FUNCTIONS */
 
-function display_orders() {}
+function display_orders() {
+
+
+$query = query ("SELECT * FROM rendelesek");
+confirm($query);
+
+while ($row = fetch_array($query)){
+
+$orders = <<<DELIMETER
+
+<tr> 
+
+<td>{$row['rendeles_id']}</td>
+<td>{$row['rendeles_amount']}</td>
+<td>{$row['rendeles_transaction']}</td>
+<td>{$row['rendeles_currency']}</td>
+<td>{$row['rendeles_status']}</td>
+</tr>
+
+DELIMETER;
+
+echo $orders;
+
+}
+
+}
+
 
 
 ?>
