@@ -1,6 +1,17 @@
 <?php 
 
 //helper funkciók
+
+
+function last_id(){
+
+global $connection;
+
+return mysqli_insert_id( $connection);
+
+}
+
+
 function redirect ($location){
 
     header("Location: $location");
@@ -261,6 +272,8 @@ redirect("admin");
 
 
 /*************************BACK END FUNCTIONS */
+
+function display_orders() {}
 
 
 ?>

@@ -175,4 +175,85 @@ return $paypal_button;
   }
 
   }
+
+
+
+
+  function report() {
+
+  
+
+    if(isset($_GET['tx'])){
+
+      $amount =  $_GET['amt'];
+      $currency= $_GET['cc'];
+      $transaction =  $_GET['tx'];
+      $status = $_GET['st'];
+  
+  
+  
+  
+  
+
+
+    $item_quantity = 0;
+    $total = 0;
+ 
+  foreach ($_SESSION as $name => $value) {
+  
+    if($value > 0) {
+  
+      if (substr($name, 0, 7 ) == "termek_") { 
+  
+        $length = strlen($name ); //$length = strlen($name -7 ); eredetileg igy kene, de nem mukodott
+        $id = substr($name, 7 , $length);
+
+
+        
+  
+      $send_order = query("INSERT INTO rendelesek (rendeles_amount, rendeles_transaction, rendeles_currency, rendeles_status ) VALUES('{$amount}', '{$transaction}','{$currency}','{$status}')");
+  
+      $last_id=  last_id();
+       confirm($send_order);
+  
+   $query = query("SELECT * FROM termekek WHERE termek_id = " . escape_string($id). " "); 
+   confirm($query);
+   
+     while($row = fetch_array($query)) {
+      $product_price = $row['termek_ar'];
+      $product_title = $row['termek_nev'];
+
+      $sub = $row['termek_ar']*$value; //termek darab*termek ar
+      $item_quantity +=$value;
+    
+
+      
+    $insert_report = query("INSERT INTO reports (termek_id, rendeles_id, termek_nev, termek_ar, termek_darabszam) VALUES('{$id}','{$last_id}','{$product_title}','{$product_price}','{$value}')");
+
+    confirm($insert_report);
+
+  }
+  
+  $total += $sub;   
+  echo $item_quantity; //teljes osszeg
+  
+ 
+  
+               }
+  
+              }
+             }
+             
+            }
+            
+            else {
+                redirect("index.php");
+            }
+  
+  
+          }
+
+
+
+
 ?>
