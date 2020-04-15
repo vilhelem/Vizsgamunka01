@@ -30,7 +30,7 @@ while($row = fetch_array($query)):
 <div class="row">
 
     <div class="col-md-7">
-       <img class="img-responsive" src="<?php echo $row['termek_kep'];  ?>" alt="">
+       <img class="img-responsive" src="../resources/<?php echo display_image($row['termek_kep']);  ?>" alt="">
 
     </div>
 

@@ -105,9 +105,15 @@ $id = substr($name, 7 , $length);
  
     $sub = $row['termek_ar']*$value; //termek darab*termek ar
     $item_quantity +=$value;
+   $product_image= display_image($row['termek_kep']);
+
   $termek = <<<DELIMETER
              <tr>
-                 <td>{$row['termek_nev']}</td>
+                 <td>{$row['termek_nev']}<br>
+                 
+                 <img width='100' src='../resources/{$product_image}'>
+                 
+                 </td>
                  <td>{$row['termek_ar']} Ft</td>
                  <td>{$value}</td>
                  <td>{$sub} Ft</td>

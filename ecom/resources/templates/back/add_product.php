@@ -1,14 +1,9 @@
-
-
-
-
-
+<?php add_product(); ?>
 <div class="col-md-12">
 
 <div class="row">
 <h1 class="page-header">
    Add Product
-
 </h1>
 </div>
                
@@ -21,14 +16,14 @@
 
 <div class="form-group">
     <label for="product-title">Product Title </label>
-        <input type="text" name="product_title" class="form-control">
+        <input type="text" name="termek_nev" class="form-control">
        
     </div>
 
 
     <div class="form-group">
            <label for="product-title">Product Description</label>
-      <textarea name="product_description" id="" cols="30" rows="10" class="form-control"></textarea>
+      <textarea name="termek_leiras" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
 
 
@@ -37,15 +32,19 @@
 
       <div class="col-xs-3">
         <label for="product-price">Product Price</label>
-        <input type="number" name="product_price" class="form-control" size="60">
+        <input type="number" name="termek_ar" class="form-control" size="60">
       </div>
     </div>
 
 
 
+    <div class="form-group">
+           <label for="product-title">Product Short Description</label>
+      <textarea name="rovid_leiras" id="" cols="30" rows="3" class="form-control"></textarea>
+    </div>
 
-    
-    
+
+
 
 </div><!--Main Content-->
 
@@ -66,9 +65,11 @@
 
     <div class="form-group">
          <label for="product-title">Product Category</label>
-          <hr>
-        <select name="product_category" id="" class="form-control">
+
+        <select name="termek_kategoria_id" id="" class="form-control">
             <option value="">Select Category</option>
+<?php show_categories_add_product_page(); ?>
+            
            
         </select>
 
@@ -83,22 +84,20 @@
 
 
     <div class="form-group">
-      <label for="product-title">Product Brand</label>
-         <select name="product_brand" id="" class="form-control">
-            <option value="">Select Brand</option>
-         </select>
+      <label for="product-title">Darabszám</label>
+        <input type="number" name="termek_darabszam" class="form-control">
     </div>
 
 
 <!-- Product Tags -->
 
 
-    <div class="form-group">
+   <!--  <div class="form-group">
           <label for="product-title">Product Keywords</label>
           <hr>
         <input type="text" name="product_tags" class="form-control">
     </div>
-
+ -->
     <!-- Product Image -->
     <div class="form-group">
         <label for="product-title">Product Image</label>
@@ -113,7 +112,3 @@
 
     
 </form>
-
-
-
-            

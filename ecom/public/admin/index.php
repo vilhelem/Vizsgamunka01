@@ -45,6 +45,11 @@ if(isset($_GET['add_product'])){
 
 }
 
+if(isset($_GET['edit_product'])){
+
+    include (TEMPLATE_BACK . "/edit_product.php");
+
+}
 
 
 

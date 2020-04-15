@@ -2,6 +2,7 @@
 
 //helper funkciók
 
+$upload_directory = "uploads";
 
 function last_id(){
 
@@ -89,10 +90,13 @@ confirm($query);
 
 while ($row = fetch_array($query)) {
 
+    $product_image =   display_image($row['termek_kep']);
+
+
 $termek = <<<DELIMETER
 <div class="col-sm-4 col-lg-4 col-md-4">
 <div class="thumbnail">
-  <a href="item.php?id={$row['termek_id']}">  <img src="{$row['termek_kep']}" alt="">
+  <a href="item.php?id={$row['termek_id']}">  <img src=../resources/{$product_image}" alt=""></a>
     <div class="caption">
         <h4 class="pull-right">{$row['termek_ar']}Ft</h4>
         <h4><a href="item.php?id={$row['termek_id']}">{$row['termek_nev']}</a>
@@ -126,7 +130,7 @@ function get_kategoriak(){
     
     $categories_links = <<<DELIMETER
     
-    <a href='category.php?id={$row['kat_id']}' class='list-group-item'>{$row['kat_nev']}</a>
+    <a href='category.php?id={$row['kat_nev']}' class='list-group-item'>{$row['kat_nev']}</a>
     
     
     DELIMETER;
@@ -152,16 +156,19 @@ function get_products_in_cat_page() {
     
     while ($row = fetch_array($query)) {
     
+        $product_image =   display_image($row['termek_kep']);
+
+
     $termek = <<<DELIMETER
     
     <div class="col-md-3 col-sm-6 hero-feature">
     <div class="thumbnail">
-        <img src="{$row['termek_kep']}" alt="">
+        <img src="../resources/{$product_image}" alt="">
         <div class="caption">
             <h3>{$row['termek_nev']}</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             <p>
-                <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
+                <a href="../resources/cart.php?add={$row['termek_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
             </p>
         </div>
     </div>
@@ -188,17 +195,19 @@ DELIMETER;
         confirm($query);
         
         while ($row = fetch_array($query)) {
-        
+            $product_image =   display_image($row['termek_kep']);
+
+
         $termek = <<<DELIMETER
         
         <div class="col-md-3 col-sm-6 hero-feature">
         <div class="thumbnail">
-            <img src="{$row['termek_kep']}" alt="">
+            <img src="../resources/{$product_image}" alt="">
             <div class="caption">
                 <h3>{$row['termek_nev']}</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 <p>
-                    <a href="#" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
+                    <a href="../resources/cart.php?add={$row['termek_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
                 </p>
             </div>
         </div>
@@ -300,6 +309,173 @@ echo $orders;
 }
 
 }
+/***************************admin termekek*************/
+function display_image($picture) {
+
+    global $upload_directory;
+    
+    return $upload_directory  . DS . $picture;
+    
+    
+    
+    }
+    
+    
+
+function get_products_in_admin (){
+
+
+    $query = query ("SELECT * FROM termekek");
+
+    confirm($query);
+    
+    while ($row = fetch_array($query)) {
+
+      $category =  show_product_category_title($row['termek_kategoria_id']);
+
+   $product_image =   display_image($row['termek_kep']);
+        
+    
+$termek = <<<DELIMETER
+    <tr>
+         <td>{$row['termek_id']}</td>
+         <td>{$row['termek_nev']}<br>
+        <a href="index.php?edit_product&id={$row['termek_id']}"><img width='100' src="../../resources/uploads/{$product_image}" alt=""></a>
+         </td>
+         <td>{$category}</td>
+        <td>{$row['termek_ar']}</td>
+        <td>{$row['termek_darabszam']}</td>
+        <td><a class="btn btn-danger" href="../../resources/templates/back/delete_product.php?id={$row['termek_id']}"><spam class="glyphicon glyphicon-remove"></spam><a/></td>
+
+
+</tr>
+DELIMETER;
+    
+    echo $termek;
+    
+            }
+
+}
+
+/************************* add termekek //admin */
+
+function add_product() {
+
+
+    if(isset($_POST['publish'])) {
+
+
+        $termek_nev         = escape_string($_POST['termek_nev']);
+        $termek_kategoria_id   = escape_string($_POST['termek_kategoria_id']);
+        $termek_ar         = escape_string($_POST['termek_ar']);
+        $termek_leiras   = escape_string($_POST['termek_leiras']);
+        $rovid_leiras          = escape_string($_POST['rovid_leiras']);
+        $termek_darabszam      = escape_string($_POST['termek_darabszam']);
+        $product_image          = escape_string($_FILES['file']['name']);
+        $image_temp_location    = escape_string($_FILES['file']['tmp_name']);
+        
+        move_uploaded_file($image_temp_location  , UPLOAD_DIRECTORY . DS . $product_image);
+        
+        
+        $query = query("INSERT INTO termekek (termek_nev, termek_kategoria_id, termek_ar, termek_leiras, rovid_leiras, termek_darabszam, termek_kep) VALUES('{$termek_nev}', '{$termek_kategoria_id}', '{$termek_ar}', '{$termek_leiras}', '{$rovid_leiras}', '{$termek_darabszam}', '{$product_image}')");
+        $last_id = last_id();
+        confirm($query);
+        set_message("New Product with id {$last_id} was Added");
+        redirect("index.php?products");
+        
+        
+                }
+        
+        
+        }
+        
+
+        function show_categories_add_product_page(){
+
+
+            $query = query("SELECT * FROM kategoriak");
+            confirm($query);
+            
+            while($row = fetch_array($query)) {
+            
+            
+            $categories_options = <<<DELIMETER
+            
+            <option value="{$row[kat_id]}">{$row['kat_nev']}</option>
+            
+            
+            DELIMETER;
+            
+            echo $categories_options;
+            
+                 }
+            
+            
+            
+            }
+            
+
+
+            /*************************updating termekek code */
+
+            function update_product() {
+
+
+                if(isset($_POST['update'])) {
+            
+            
+                    $termek_nev         = escape_string($_POST['termek_nev']);
+                    $termek_kategoria_id   = escape_string($_POST['termek_kategoria_id']);
+                    $termek_ar         = escape_string($_POST['termek_ar']);
+                    $termek_leiras   = escape_string($_POST['termek_leiras']);
+                    $rovid_leiras          = escape_string($_POST['rovid_leiras']);
+                    $termek_darabszam      = escape_string($_POST['termek_darabszam']);
+                    $product_image          = escape_string($_FILES['file']['name']);
+                    $image_temp_location    = escape_string($_FILES['file']['tmp_name']);
+                    
+                    move_uploaded_file($image_temp_location  , UPLOAD_DIRECTORY . DS . $product_image);
+                    
+                    
+                    $query = "UPDATE termekek SET " ;
+                    $query .= "termek_nev = '{$termek_nev}', " ;
+                    $query .= "termek_kategoria_id = '{$termek_kategoria_id}', " ;
+                    $query .= "termek_ar = '{$termek_ar}', " ;
+
+                    $query .= "termek_leiras = '{$termek_leiras}', " ;
+                    $query .= "rovid_leiras = '{$rovid_leiras}', " ;
+                    $query .= "termek_darabszam = '{$termek_darabszam}', " ;
+                    $query .= "termek_kep = '{$product_image}', " ;
+                    $query .= "WHERE termek_id" . escape_string($_GET['id']); ;
+
+
+
+                    confirm($query);
+                    set_message("Termek frissitve.");
+                    redirect("index.php?products");
+                    
+                    
+                            }
+                    
+                    
+                    }
+                    
+
+
+            function show_product_category_title($product_category_id){
+
+
+                $category_query = query("SELECT * FROM kategoriak WHERE kat_id = '{$product_category_id}' ");
+                confirm($category_query);
+                
+                while($category_row = fetch_array($category_query)) {
+                
+                return $category_row['kat_nev'];
+                
+                }
+}
+
+            
+
 
 
 
