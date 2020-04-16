@@ -492,6 +492,57 @@ $send_update_query = query ($query);
 }
 
             
+///////////////kategoriak admin
+
+
+function show_categories_in_admin(){
+
+    $category_query= $query =( "SELECT * FROM kategoriak");
+    $category_query = query($query);
+
+    confirm($category_query);
+
+    while ($row = fetch_array($category_query)){
+        $kat_id = $row ['kat_id'];
+
+        $kat_nev= $row ['kat_nev'];
+
+        $category = <<<DELIMETER
+
+
+
+
+     <tr>
+        <td>{$kat_id}</td>
+        <td>{$kat_nev}</td>
+        <td>DELETE</td>
+    </tr>
+
+
+
+DELIMETER;
+
+echo $category;
+
+    }
+
+
+}
+
+function add_category(){
+
+if(isset($_POST['add_category'])) {
+
+$kat_nev = escape_string($_POST['kat_nev']);
+
+$insert_cat = query("INSERT INTO kategoriak(kat_nev) VALUES ('{$kat_nev}')");
+confirm($insert_cat);
+redirect ("index.php?categories");
+
+}
+
+
+}
 
 
 
