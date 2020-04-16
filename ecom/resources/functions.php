@@ -433,6 +433,20 @@ function add_product() {
                     $product_image          = escape_string($_FILES['file']['name']);
                     $image_temp_location    = escape_string($_FILES['file']['tmp_name']);
                     
+                    if(empty( $product_image )) {
+
+                     
+                        $get_pic= query("SELECT termek_kep FROM  termekek WHERE termek_id =" .escape_string($_GET['id']). " ");
+                        confirm ($get_pic);
+                        while ($pic = fetch_array($get_pic)){
+
+                            $product_image = $pic['termek_kep'];
+
+                        }
+                    }
+
+
+
                     move_uploaded_file($image_temp_location  , UPLOAD_DIRECTORY . DS . $product_image);
                     
                     
@@ -445,10 +459,13 @@ function add_product() {
                     $query .= "rovid_leiras = '{$rovid_leiras}', " ;
                     $query .= "termek_darabszam = '{$termek_darabszam}', " ;
                     $query .= "termek_kep = '{$product_image}', " ;
-                    $query .= "WHERE termek_id" . escape_string($_GET['id']); ;
+                    $query .= "WHERE termek_id=" . escape_string($_GET['id']); ;
 
 
 
+
+
+$send_update_query = query ($query);
                     confirm($query);
                     set_message("Termek frissitve.");
                     redirect("index.php?products");

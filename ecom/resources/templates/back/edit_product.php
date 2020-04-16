@@ -96,7 +96,7 @@ update_product();
          <label for="product-title">Product Category</label>
 
         <select name="termek_kategoria_id" id="" class="form-control">
-            <option value="">Select Category</option>
+            <option value=""><?php echo show_product_category_title($termek_kategoria_id); ?></option>
 <?php show_categories_add_product_page(); ?>
             
            
