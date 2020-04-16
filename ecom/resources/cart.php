@@ -103,7 +103,7 @@ $id = substr($name, 7 , $length);
  
    while($row = fetch_array($query)) {
  
-    $sub = $row['termek_ar']*$value; //termek darab*termek ar
+    $sub = $row['termek_ar']*$value;
     $item_quantity +=$value;
    $product_image= display_image($row['termek_kep']);
 
@@ -136,34 +136,26 @@ DELIMETER;
   $quantity++;
   
 
+
+  $_SESSION['item_total'] = $total += $sub;
+  $_SESSION['item_quantity'] = $item_quantity;
+
+
+
 }
 
-$_SESSION['item_total'] = $total += $sub;    //teljes osszeg
-$_SESSION['item_quantity'] = $item_quantity; //termekek db
 
 
 
-             }
+         }
 
-
-
-
-
+    }
 
   }
 
 
 
-
-
-        }
-
-
-
-
-
-
-      }
+}
 
   function show_paypal(){
 

@@ -44,14 +44,14 @@ update_product();
 <div class="col-md-8">
 
 <div class="form-group">
-    <label for="product-title">Product Title </label>
+    <label for="product-title">Termék név </label>
         <input type="text" name="termek_nev" class="form-control" value="<?php echo  $termek_nev ;  ?>">
        
     </div>
 
 
     <div class="form-group">
-           <label for="product-title">Product Description</label>
+           <label for="product-title">Termék leírás</label>
       <textarea name="termek_leiras" id="" cols="30" rows="10" class="form-control"><?php echo $termek_leiras; ?></textarea>
     </div>
 
@@ -60,7 +60,7 @@ update_product();
     <div class="form-group row">
 
       <div class="col-xs-3">
-        <label for="product-price">Product Price</label>
+        <label for="product-price">Termék ár</label>
         <input type="number" name="termek_ar" class="form-control" size="60" value="<?php echo $termek_ar; ?> ">
       </div>
     </div>
@@ -68,7 +68,7 @@ update_product();
 
 
     <div class="form-group">
-           <label for="product-title">Product Short Description</label>
+           <label for="product-title">Termék rövid leírás</label>
       <textarea name="rovid_leiras" id="" cols="30" rows="3" class="form-control" value="<?php echo $rovid_leiras; ?> "></textarea>
     </div>
 
@@ -93,7 +93,7 @@ update_product();
      <!-- Product Categories-->
 
     <div class="form-group">
-         <label for="product-title">Product Category</label>
+         <label for="product-title">Termék kategória</label>
 
         <select name="termek_kategoria_id" id="" class="form-control">
             <option value="<?php echo $termek_kategoria_id; ?>"><?php echo show_product_category_title($termek_kategoria_id); ?></option>
@@ -129,7 +129,7 @@ update_product();
  -->
     <!-- Product Image -->
     <div class="form-group">
-        <label for="product-title">Product Image</label>
+        <label for="product-title">Termék kép</label>
         <input type="file" name="file">
       
       <img src="../../resources<?php echo $product_image; ?>" alt="">

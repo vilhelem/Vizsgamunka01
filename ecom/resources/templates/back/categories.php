@@ -1,7 +1,7 @@
 
 <?php add_category(); ?>
 <h1 class="page-header">
-  Product Categories
+  Termék Kategóriák
 
 </h1>
 
@@ -13,7 +13,7 @@
     <form action="" method="post">
     
         <div class="form-group">
-            <label for="category-title">Title</label>
+            <label for="category-title">Név</label>
             <input name="kat_nev" type="text" class="form-control">
         </div>
 
@@ -36,7 +36,7 @@
 
         <tr>
             <th>id</th>
-            <th>Title</th>
+            <th>Név</th>
         </tr>
             </thead>
 

@@ -90,35 +90,34 @@ confirm($query);
 
 while ($row = fetch_array($query)) {
 
-    $product_image =   display_image($row['termek_kep']);
+  
+$product_image = display_image($row['termek_kep']);
 
+$product = <<<DELIMETER
 
-$termek = <<<DELIMETER
 <div class="col-sm-4 col-lg-4 col-md-4">
-<div class="thumbnail">
-  <a href="item.php?id={$row['termek_id']}">  <img src=../resources/{$product_image}" alt=""></a>
-    <div class="caption">
-        <h4 class="pull-right">{$row['termek_ar']}Ft</h4>
-        <h4><a href="item.php?id={$row['termek_id']}">{$row['termek_nev']}</a>
-        </h4>
-        <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <div class="thumbnail">
+        <a href="item.php?id={$row['termek_id']}"><img style="height:90px" src="../resources/{$product_image}" alt=""></a>
+        <div class="caption">
+            <h4 class="pull-right">&#36;{$row['termek_ar']}</h4>
+            <h4><a href="item.php?id={$row['termek_id']}">{$row['termek_nev']}</a>
+            </h4>
+            
+             <a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['termek_id']}">Add to cart</a>
+        </div>
+
+
+       
     </div>
-    
-    <a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['termek_id']}">KOSÁRBA</a>
 </div>
-</div>
+
 DELIMETER;
 
-echo $termek;
+echo $product;
+
 
         }
-
-
-
-
-
-}
-
+    }
 function get_kategoriak(){
 
 
@@ -147,44 +146,45 @@ function get_kategoriak(){
     
     
 
-function get_products_in_cat_page() { 
+    function get_products_in_cat_page() {
 
 
-    $query = query("SELECT * FROM termekek WHERE termek_kategoria_id = " . escape_string($_GET['id']) . " ");
-    
-    confirm($query);
-    
-    while ($row = fetch_array($query)) {
-    
-        $product_image =   display_image($row['termek_kep']);
-
-
-    $termek = <<<DELIMETER
-    
-    <div class="col-md-3 col-sm-6 hero-feature">
-    <div class="thumbnail">
-        <img src="../resources/{$product_image}" alt="">
-        <div class="caption">
-            <h3>{$row['termek_nev']}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <p>
-                <a href="../resources/cart.php?add={$row['termek_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
-            </p>
-        </div>
-    </div>
-</div>
-DELIMETER;
-    
-    echo $termek;
-    
-            }
-    
-    
-    
-    
-    
-    }
-    
+        $query = query(" SELECT * FROM termekek WHERE termek_kategoria_id = " . escape_string($_GET['id']) . " ");
+        confirm($query);
+        
+        while($row = fetch_array($query)) {
+        
+        $product_image = display_image($row['termek_kep']);
+        
+        $product = <<<DELIMETER
+        
+        
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <div class="thumbnail">
+                            <img src="../resources/{$product_image}" alt="">
+                            <div class="caption">
+                                <h3>{$row['termek_nev']}</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>
+                                    <a href="../resources/cart.php?add={$row['termek_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+        
+        DELIMETER;
+        
+        echo $product;
+        
+        
+                }
+        
+        
+        }
+        
+        
+        
+        
 
     
     function get_products_in_shop_page() { 
@@ -515,7 +515,8 @@ function show_categories_in_admin(){
      <tr>
         <td>{$kat_id}</td>
         <td>{$kat_nev}</td>
-        <td>DELETE</td>
+        <td><a class="btn btn-danger" href="../../resources/templates/back/delete_category.php?id={$row['kat_id']}"><spam class="glyphicon glyphicon-remove"></spam><a/></td>
+
     </tr>
 
 
@@ -535,15 +536,96 @@ if(isset($_POST['add_category'])) {
 
 $kat_nev = escape_string($_POST['kat_nev']);
 
+if(empty($kat_nev) || $kat_nev == " "){
+
+ echo "nem lehet üres mező!";
+} else {
+
+
+
 $insert_cat = query("INSERT INTO kategoriak(kat_nev) VALUES ('{$kat_nev}')");
 confirm($insert_cat);
+
+set_message("KATEGÓRIA LÉTREHOZVA");
 redirect ("index.php?categories");
 
 }
-
+}
 
 }
 
+//////////////////admin felhasznalok
+
+function display_users() {
+
+
+    $category_query = query("SELECT * FROM felhasznalok");
+    confirm($category_query);
+    
+    
+    while($row = fetch_array($category_query)) {
+    
+    $user_id = $row['user_id'];
+    $username = $row['username'];
+    $email = $row['email'];
+    $password = $row['password'];
+    
+    $user = <<<DELIMETER
+    
+    
+    <tr>
+        <td>{$user_id}</td>
+        <td>{$username}</td>
+         <td>{$email}</td>
+        <td><a class="btn btn-danger" href="../../resources/templates/back/delete_user.php?id={$row['user_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
+    </tr>
+    
+    
+    
+DELIMETER;
+    
+    echo $user;
+    
+    
+    
+        }
+    
+    
+    
+    }
+    function add_user() {
+
+
+        if(isset($_POST['add_user'])) {
+        
+        
+        $username   = escape_string($_POST['username']);
+        $email      = escape_string($_POST['email']);
+        $password   = escape_string($_POST['password']);
+        // $user_photo = escape_string($_FILES['file']['name']);
+        // $photo_temp = escape_string($_FILES['file']['tmp_name']);
+        
+        
+        // move_uploaded_file($photo_temp, UPLOAD_DIRECTORY . DS . $user_photo);
+        
+        
+        $query = query("INSERT INTO felhasznalok(username,email,password) VALUES('{$username}','{$email}','{$password}')");
+        confirm($query);
+        
+        set_message("USER CREATED");
+        
+        redirect("index.php?users");
+        
+        
+        
+        }
+        
+        
+        
+        }
+        
+        
+    
 
 
 

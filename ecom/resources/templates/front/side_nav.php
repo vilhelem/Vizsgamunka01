@@ -1,5 +1,5 @@
 <div class="col-md-3">
-                <p class="lead">Órasziget</p>
+                <p class="lead">Vizsgamunka</p>
                 <div class="list-group">
 
                 <?php 

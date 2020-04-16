@@ -10,7 +10,7 @@
                        
                       </p>
 
-                      <a href="index.php?add_user" class="btn btn-primary">Felhasznalo hozzaadasa</a>
+                      <a href="index.php?add_user" class="btn btn-primary">Felszanalo hozzaadasa</a>
 
 
                       <div class="col-md-12">
@@ -19,7 +19,7 @@
                               <thead>
                                   <tr>
                                       <th>Id</th>
-                                      <th>Felhasznalonev</th>
+                                      <th>Username</th>
                                       <th>Email</th>
                           
                                   </tr>

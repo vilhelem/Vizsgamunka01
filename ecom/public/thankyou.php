@@ -21,7 +21,7 @@ process_transaction();
     <!-- Page Content -->
     <div class="container">
 
-<h1 class="text-center"> Thank you</h2>
+<h1 class="text-center">Köszönjük a rendelésed</h2>
 
 
     </div>

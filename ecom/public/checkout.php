@@ -15,7 +15,7 @@
 
 <div class="row">
 <h4 class="text-center bg-danger" ><?php display_message(); ?></h4>
-      <h1>Checkout</h1>
+      <h1>Kosár</h1>
 
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 
@@ -25,10 +25,10 @@
     <table class="table table-striped">
         <thead>
           <tr>
-           <th>Product</th>
-           <th>Price</th>
-           <th>Quantity</th>
-           <th>Sub-total</th>
+           <th>Termék</th>
+           <th>Ár</th>
+           <th>Darabszám</th>
+           <th>Teljes összeg</th>
      
           </tr>
         </thead>
@@ -44,22 +44,22 @@
 <!--  ***********CART TOTALS*************-->
             
 <div class="col-xs-4 pull-right ">
-<h2>Cart Totals</h2>
+<h2>Kosár tartalma:</h2>
 
 <table class="table table-bordered" cellspacing="0">
 
 <tr class="cart-subtotal">
-<th>Items:</th>
+<th>Termékek:</th>
 <td><span class="amount"><?php echo isset ($_SESSION['item_quantity'])  ? $_SESSION['item_quantity'] : $_SESSION['item_quantity'] ="0";
 ?></span></td>
 </tr>
 <tr class="shipping">
-<th>Shipping and Handling</th>
-<td>Free Shipping</td>
+<th>Szállítás</th>
+<td>Ingyenes kiszállítás</td>
 </tr>
 
 <tr class="order-total">
-<th>Order Total</th>
+<th>Rendelés végösszege</th>
 <td><strong><span class="amount">
 <?php echo isset ($_SESSION['item_total'])  ? $_SESSION['item_total'] : $_SESSION['item_total'] ="0";
 ?>

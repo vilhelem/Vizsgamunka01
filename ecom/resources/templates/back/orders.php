@@ -18,10 +18,10 @@
 
       <tr>
            <th>ID</th>
-           <th>Amount</th>
+           <th>Összeg</th>
            <th>Transaction</th>
-           <th>Qurrency</th>
-           <th>Status</th>
+           <th>Pénznem</th>
+           <th>Státusz</th>
     
       </tr>
     </thead>

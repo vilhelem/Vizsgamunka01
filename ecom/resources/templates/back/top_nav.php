@@ -6,20 +6,20 @@
                     <span class="icon-bar"></span>
                 </button>
                
-                <a class="navbar-brand" href="index.php">SB Admin</a>
-                <a class="navbar-brand" href="../index.php">Home</a>
+                <a class="navbar-brand" href="index.php">Admin</a>
+                <a class="navbar-brand" href="../index.php">Főoldal</a>
             </div>
 
 
                <!-- Top Menu Items -->
                <ul class="nav navbar-right top-nav">
               <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Vilhelem Patrik <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                        
                         <li class="divider"></li>
                         <li>
-                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Kijelentkezés</a>
                         </li>
                     </ul>
                 </li>
