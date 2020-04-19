@@ -97,13 +97,13 @@ $product = <<<DELIMETER
 
 <div class="col-sm-4 col-lg-4 col-md-4">
     <div class="thumbnail">
-        <a href="item.php?id={$row['termek_id']}"><img style="height:90px" src="../resources/{$product_image}" alt=""></a>
+        <a href="item.php?id={$row['termek_id']}"><img style="height:300px" src="../resources/{$product_image}" alt=""></a>
         <div class="caption">
             <h4 class="pull-right">&#36;{$row['termek_ar']}</h4>
             <h4><a href="item.php?id={$row['termek_id']}">{$row['termek_nev']}</a>
             </h4>
             
-             <a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['termek_id']}">Add to cart</a>
+             <a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['termek_id']}">Kosárba</a>
         </div>
 
 
