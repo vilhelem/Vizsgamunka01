@@ -33,10 +33,6 @@ if(isset($_GET['add'])) {
     }
 
 
-    /*$_SESSION['product_' . $_GET['add']]  +=1;
-
-    redirect("index.php"); */
-
 }
 
 
@@ -81,7 +77,7 @@ if(isset($_GET['delete'])) {
 
 
  function cart() {
-  $item_quantity = 0;
+  $item_quantity = 0; 
   $total = 0;
 
   $item_name = 1;
@@ -94,7 +90,7 @@ foreach ($_SESSION as $name => $value) {
 
     if (substr($name, 0, 7 ) == "termek_") { 
 
-      $length = strlen($name ); //$length = strlen($name -7 ); eredetileg igy kene, de nem mukodott
+      $length = strlen($name ); 
 
 $id = substr($name, 7 , $length);
 
@@ -103,13 +99,13 @@ $id = substr($name, 7 , $length);
  
    while($row = fetch_array($query)) {
  
-    $sub = $row['termek_ar']*$value;
+    $sub = $row['termek_ar']*$value; //rendelés végösszegének kiszámítása
     $item_quantity +=$value;
-   $product_image= display_image($row['termek_kep']);
+   $product_image= display_image($row['termek_kep']); //termékek képének megjelenítése
 
   $termek = <<<DELIMETER
              <tr>
-                 <td>{$row['termek_nev']}<br>
+                 <td>{$row['termek_nev']}<br> 
                  
                  <img width='100' src='../resources/{$product_image}'>
                  
@@ -134,26 +130,17 @@ DELIMETER;
   $item_number ++;
   $amount ++;
   $quantity++;
-  
-
 
   $_SESSION['item_total'] = $total += $sub;
   $_SESSION['item_quantity'] = $item_quantity;
 
-
-
 }
-
-
-
 
          }
 
     }
 
   }
-
-
 
 }
 

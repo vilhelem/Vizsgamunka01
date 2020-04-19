@@ -1,8 +1,6 @@
 <?php require_once("../resources/config.php"); ?>
 
-<?php include(TEMPLATE_FRONT . DS . "header.php") ?>
-
-
+<?php include(TEMPLATE_FRONT . DS . "header.php") ?> 
 
     <!-- Page Content -->
     <div class="container">
@@ -26,7 +24,7 @@
                 
 
 <?php 
-get_products();
+get_products();  /////termékek megjelenítésének funkciójának meghívása
 ?>
 
 
@@ -46,7 +44,5 @@ get_products();
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
 </body>
-
 </html>
