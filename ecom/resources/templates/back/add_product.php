@@ -3,7 +3,7 @@
 
 <div class="row">
 <h1 class="page-header">
-   Add Product
+   Termék hozzáadása
 </h1>
 </div>
                
@@ -15,14 +15,14 @@
 <div class="col-md-8">
 
 <div class="form-group">
-    <label for="product-title">Product Title </label>
+    <label for="product-title">Termék neve </label>
         <input type="text" name="termek_nev" class="form-control">
        
     </div>
 
 
     <div class="form-group">
-           <label for="product-title">Product Description</label>
+           <label for="product-title">Termék leírása</label>
       <textarea name="termek_leiras" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
 
@@ -31,7 +31,7 @@
     <div class="form-group row">
 
       <div class="col-xs-3">
-        <label for="product-price">Product Price</label>
+        <label for="product-price">Termék ára</label>
         <input type="number" name="termek_ar" class="form-control" size="60">
       </div>
     </div>
@@ -39,7 +39,7 @@
 
 
     <div class="form-group">
-           <label for="product-title">Product Short Description</label>
+           <label for="product-title">Termék rövid leírása</label>
       <textarea name="rovid_leiras" id="" cols="30" rows="3" class="form-control"></textarea>
     </div>
 
@@ -64,10 +64,10 @@
      <!-- Product Categories-->
 
     <div class="form-group">
-         <label for="product-title">Product Category</label>
+         <label for="product-title">Termék kategóriája</label>
 
         <select name="termek_kategoria_id" id="" class="form-control">
-            <option value="">Select Category</option>
+            <option value="">Válassz kategóriát</option>
 <?php show_categories_add_product_page(); ?>
             
            
@@ -100,7 +100,7 @@
  -->
     <!-- Product Image -->
     <div class="form-group">
-        <label for="product-title">Product Image</label>
+        <label for="product-title">Termék kép</label>
         <input type="file" name="file">
       
     </div>

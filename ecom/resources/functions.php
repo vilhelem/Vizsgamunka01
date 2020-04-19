@@ -99,7 +99,7 @@ $product = <<<DELIMETER
     <div class="thumbnail">
         <a href="item.php?id={$row['termek_id']}"><img style="height:300px" src="../resources/{$product_image}" alt=""></a>
         <div class="caption">
-            <h4 class="pull-right">&#36;{$row['termek_ar']}</h4>
+            <h4 class="pull-right">{$row['termek_ar']} Ft</h4>
             <h4><a href="item.php?id={$row['termek_id']}">{$row['termek_nev']}</a>
             </h4>
             
@@ -207,7 +207,7 @@ function get_kategoriak(){
                 <h3>{$row['termek_nev']}</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 <p>
-                    <a href="../resources/cart.php?add={$row['termek_id']}" class="btn btn-primary">Buy Now!</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">More Info</a>
+                    <a href="../resources/cart.php?add={$row['termek_id']}" class="btn btn-primary">Kosárba</a> <a href="item.php?id={$row['termek_id']}" class="btn btn-default">Részletek</a>
                 </p>
             </div>
         </div>
